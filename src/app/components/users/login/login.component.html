@@ -1,0 +1,43 @@
+<section id="login" class="mb-5 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+          <div class="card_login">
+            <div class="card">
+              <div class="card-body text-center">
+                <form #formLogin="ngForm" (submit)="onLogin()">
+                  <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+                  <!-- <div class="alert alert-danger" role="alert" *ngIf="isError">
+                    Something is wrong!
+                  </div> -->
+                  <div class="form-group">
+                    <input [(ngModel)]="email" type="email" id="email" [class.is-invalid]="email1.invalid && email1.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" class="form-control" placeholder="Email" required #email1="ngModel">
+                    <small *ngIf="email1.invalid && email1.touched" class="form-text text-danger">Ingrese un email valido</small>
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <input [(ngModel)]="password" type="password" id="password" name="password" class="form-control" placeholder="Password" #pass="ngModel" [class.is-invalid]="pass.invalid && pass.touched" minlength="6" required>
+                    <small *ngIf="pass.invalid && pass.touched" class="form-text text-danger">Minimo 6 letras</small>
+                  </div>
+                  <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+                  <div class="form-group">
+                    <a routerLink="/user/register" class="form-control login-user">Are you new ?</a>
+                  </div>
+                  <div class="form-group">
+                    <!-- <button class="btn btn-block btn-social btn-facebook" (click)="onLoginFacebook()">
+                      <span class="fa fa-facebook"></span>
+                      FACEBOOK
+                    </button> -->
+                    <button class="btn btn-block btn-social btn-google" (click)="onLoginGoogle()">
+                      <span class="fa fa-google"></span>
+                      GOOGLE
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,81 @@
+<section id="register" class="mb-5 mt-5">
+    <div class="container">
+      <div class="row">
+  
+        <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+          <div class="card_register">
+            <div class="card">
+              <div class="card-body text-center">
+                <form #formRegister="ngForm" (ngSubmit)="onAddUser()">
+                  <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+                  <!-- <div class="alert alert-danger" role="alert" *ngIf="isError"> -->
+                    <!-- {{msgError}}
+                  </div> -->
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Name" [(ngModel)]="name"  #nombre="ngModel" [class.is-invalid]="(nombre.invalid && nombre.touched) || (nombre.invalid && formRegister.submitted)" minlength="1" required>
+                    <small *ngIf="(nombre.invalid && nombre.touched) || (nombre.invalid && formRegister.submitted)" class="form-text text-danger">Ingrese un nombre</small>
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <input type="text" name="phone" class="form-control" placeholder="Phone"  #tlf="ngModel" [class.is-invalid]="(tlf.invalid && tlf.touched) || (tlf.invalid && formRegister.submitted)" [(ngModel)]="phone" required minlength="9">
+                    <small *ngIf="(tlf.invalid && tlf.touched) || (tlf.invalid && formRegister.submitted)" class="form-text text-danger">Ingrese un telefono valido</small>
+                  </div>
+
+                  <br>
+                  <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="email" required #email1="ngModel" [class.is-invalid]="(email1.invalid && email1.touched) || (email1.invalid && formRegister.submitted)" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                    <small *ngIf="(email1.invalid && email1.touched) || (email1.invalid && formRegister.submitted)" class="form-text text-danger">Ingrese un email valido</small>
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="password" #pass="ngModel" [class.is-invalid]="(pass.invalid && pass.touched) || (pass.invalid && formRegister.submitted)" required minlength="6">
+                    <small *ngIf="(pass.invalid && pass.touched) || (pass.invalid && formRegister.submitted)" class="form-text text-danger">Ingrese una contraseña valida(Min 6 caracteres)</small>
+                  </div>
+
+                  <br>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" [(ngModel)]="admin" value=true name="admin" id="admin">
+                    <label class="form-check-label" for="admin">
+                      Administrador
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" [(ngModel)]="admin" value=false name="admin" id="edit" checked>
+                    <label class="form-check-label" for="edit">
+                      Editor
+                    </label>
+                  </div>
+                  <hr>
+                  <div class="form-group">
+                    <h5>Seleccionar image:</h5>
+                    <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
+                  </div>
+                  <br>
+                  <input #imageUser type="hidden" [value]="urlImage | async">
+                  <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+                  <ng-template #btnDisabled>
+                    <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Register</button>
+                  </ng-template>
+                  <div class="form-group">
+                    <a routerLink="/user/login" class="form-control login-user">Do you have account?</a>
+                  </div>
+                  <div class="form-group">
+
+                    <!-- <button class="btn btn-block btn-social btn-facebook" (click)="onLoginFacebook()">
+                      <span class="fa fa-facebook"></span>
+                      FACEBOOK
+                    </button> -->
+                    <button class="btn btn-block btn-social btn-google" (click)="onLoginGoogle()">
+                      <span class="fa fa-google"></span>
+                      GOOGLE
+                    </button>
+                  </div>
+                </form>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

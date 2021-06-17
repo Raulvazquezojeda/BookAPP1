@@ -1,0 +1,77 @@
+<div class="modal fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{ !this.dataApi.selectedBook.id ? 'New Book' : 'Update Book'}}
+          </h5>
+          <button type="button" class="close" (click)="resetForm(formBook)" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form name="formBook" #formBook="ngForm" (ngSubmit)="onSaveBook(formBook)">
+            <input type="hidden" name="id" [(ngModel)]="this.dataApi.selectedBook.id">
+            <input type="hidden" name="userUid" [value]="userUid">
+            <div class="form-group">
+              <label for="titulo" class="col-form-label">Titulo:</label>
+              <input type="text" class="form-control" name="titulo" [(ngModel)]="this.dataApi.selectedBook.titulo" #titulo="ngModel" [class.is-invalid]="(titulo.invalid && titulo.touched) || (titulo.invalid && formBook.submitted)" minlength="2" required>
+              <small *ngIf="(titulo.invalid && titulo.touched) || (titulo.invalid && formBook.submitted)" class="form-text text-danger">Ingrese un titulo</small>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="idioma">Idioma</label>
+                <select name="idioma" class="form-control" [(ngModel)]="this.dataApi.selectedBook.idioma" #idioma="ngModel" [class.is-invalid]="(idioma.invalid && idioma.touched) || (idioma.invalid && formBook.submitted)"  required>
+                  <option value="Inglés">Inglés</option>
+                  <option value="Castellano">Castellano</option>
+                </select>
+                <small *ngIf="(idioma.invalid && idioma.touched) || (idioma.invalid && formBook.submitted)" class="form-text text-danger">Seleccione el idioma</small>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="precio">Precio</label>
+                <input type="text" name="precio" class="form-control" placeholder="0,00€" [(ngModel)]="this.dataApi.selectedBook.precio" #precio="ngModel" [class.is-invalid]="(precio.invalid && precio.touched) || (precio.invalid && formBook.submitted)" minlength="1" required>
+                <small *ngIf="(precio.invalid && precio.touched) || (precio.invalid && formBook.submitted)" class="form-text text-danger">Ingrese un precio</small>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="autor">Autor</label>
+                <input type="text" name="autor" class="form-control" placeholder="Autor" [(ngModel)]="this.dataApi.selectedBook.autor" #autor="ngModel" [class.is-invalid]="(autor.invalid && autor.touched) || (autor.invalid && formBook.submitted)" minlength="2" required>
+                <small *ngIf="(autor.invalid && autor.touched) || (autor.invalid && formBook.submitted)" class="form-text text-danger">Ingrese un autor</small>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="oferta">Oferta</label>
+                <select name="oferta" class="form-control" [(ngModel)]="this.dataApi.selectedBook.oferta" #ofer="ngModel" [class.is-invalid]="(ofer.invalid && ofer.touched) || (ofer.invalid && formBook.submitted)" required>
+                  <option value="1">Sí</option>
+                  <option value="0">No</option>
+                </select>
+                <small *ngIf="(ofer.invalid && ofer.touched) || (ofer.invalid && formBook.submitted)" class="form-text text-danger">Seleccione si se encuentra de oferta</small>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="portada">Portada</label>
+                <input type="text" name="portada" class="form-control" placeholder="Portada" [(ngModel)]="this.dataApi.selectedBook.portada" #portada="ngModel" [class.is-invalid]="(portada.invalid && portada.touched) || (portada.invalid && formBook.submitted)" minlength="2" required>
+                <small *ngIf="(portada.invalid && portada.touched) || (portada.invalid && formBook.submitted)" class="form-text text-danger">Ingrese una imagen de portada</small>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="link_amazon">Link Amazon</label>
+                <input type="text" name="link_amazon" class="form-control" placeholder="Link amazon" [(ngModel)]="this.dataApi.selectedBook.link_amazon" #amazon="ngModel" [class.is-invalid]="(amazon.invalid && amazon.touched) || (amazon.invalid && formBook.submitted)" minlength="2" required>
+                <small *ngIf="(amazon.invalid && amazon.touched) || (amazon.invalid && formBook.submitted)" class="form-text text-danger">Ingrese un link de compra</small>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="descripcion" class="col-form-label">Descripcion:</label>
+              <textarea class="form-control" name="descripcion" [(ngModel)]="this.dataApi.selectedBook.descripcion" #descrip="ngModel" [class.is-invalid]="(descrip.invalid && descrip.touched) || (descrip.invalid && formBook.submitted)" minlength="2" required></textarea>
+              <small *ngIf="(descrip.invalid && descrip.touched) || (descrip.invalid && formBook.submitted)" class="form-text text-danger">Ingrese una descripcion</small>
+            </div>
+            <div class="modal-footer">
+              <button type="button" (click)="resetForm(formBook)" class="btn btn-secondary" #btnClose data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save Book</button>
+            </div>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>

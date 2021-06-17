@@ -1,0 +1,31 @@
+<section class="row mt-5">
+    <div class="col">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">email</th>
+            <th scope="col">role</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{user.email}}</td>
+            <td id="rol">{{user.roles.admin == true  ? 'Administrador': 'Editor'}}</td>
+            <td *ngIf="isAdmin == true; else noAdmin">
+              <button class="btn btn-danger" (click)="onDeleteUser(user.id)">Delete</button>
+            </td>
+            <ng-template #noAdmin>
+              <td>
+                <button class="btn btn-danger" disabled="true">Delete</button>
+              </td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <app-modal-user [userUid]="userUid"></app-modal-user>
